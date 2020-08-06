@@ -17,7 +17,7 @@
     <div class="form-group">
         <label>Movie</label>
         <div class="tt-container">
-            <input id="movie" name="movie" data-rule-atLeastOneMovie="true" type="text" value="" class="form-control" />
+            <input id="movie" name="movie" data-rule-atLeastOneMovie="true" data-rule-LessThanThreeMovies="true" type="text" value="" class="form-control" />
         </div>
     </div>
 
@@ -83,6 +83,10 @@
             $.validator.addMethod("atLeastOneMovie", function () {
                 return vm.movieIds.length > 0;
             }, "Please select at least one movie.");
+
+            $.validator.addMethod("LessThanThreeMovies", function () {
+                return vm.movieIds.length <= 3;
+            }, "You can not rent more than 3 movies at one time.");
 
             var validator = $("#newRental").validate({
                 submitHandler: function () {
